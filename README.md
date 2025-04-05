@@ -1,6 +1,9 @@
 # AWS Continuous Integration Setup
 
 This guide provides step-by-step instructions to set up continuous integration for a Python application using AWS services.
+The pipline after build will look like:
+
+![diagram](assets/diagram.png)
 
 ## 1. Set up GitHub Repository
 
