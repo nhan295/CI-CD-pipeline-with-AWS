@@ -62,3 +62,66 @@ Set up an automated pipeline for continuous integration using AWS CodePipeline.
 ---
 
 Your continuous integration pipeline is now ready to build and deploy your Python application automatically!
+
+# AWS Continuous Delivery Setup
+
+## Steps to Set Up Continuous Delivery with AWS CodeDeploy
+
+8. **Create an Application on CodeDeploy**  
+   - Navigate to AWS CodeDeploy in the Management Console.
+   - Create a new application and provide the required details.
+
+9. **Tag the EC2 Instance**  
+   - Go to your EC2 instance in the AWS Management Console.
+   - Add a tag to the instance to identify it for deployment.
+
+10. **Connect to EC2 Instance via SSH**  
+   - Open your terminal or Git Bash and type the following command:
+     ```bash
+     ssh -i <key_pair_file> ubuntu@<ec2_ipv4_address>
+     ```
+
+11. **Install CodeDeploy Agent**  
+   - Follow the steps in the [CodeDeploy Agent Installation Guide](https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-ubuntu.html).
+
+12. **Create an IAM Role for CodeDeploy**  
+   - Create an IAM role with the following:
+     - **AWS Service**: EC2
+     - Attach the required policies for CodeDeploy access.
+
+13. **Attach IAM Role to EC2 Instance**  
+   - Go to the EC2 instance in the AWS Management Console.
+   - Navigate to **Actions** -> **Security** -> **Modify IAM Role**.
+   - Attach the newly created IAM role to the instance.
+
+14. **Restart the CodeDeploy Agent**  
+   - In the terminal, type:
+     ```bash
+     sudo service codedeploy-agent restart
+     ```
+
+15. **Add EC2 Full Permissions to IAM Role**  
+   - Ensure the IAM role attached to the EC2 instance has `AmazonEC2FullAccess` permissions.
+
+16. **Create a Deployment Group in CodeDeploy**  
+   - Go to the CodeDeploy application and create a deployment group.
+
+17. **Create a Deployment**  
+    - Create a deployment using the deployment group.
+    - If errors occur due to missing Docker, install Docker by typing:
+      ```bash
+      sudo apt install docker.io -y
+      ```
+
+18. **Verify Deployment and Set Up CodePipeline**  
+    - After a successful deployment, go to **CodePipeline**.
+    - Edit the pipeline and add a new stage.
+      - Choose **AWS CodeDeploy** as the action provider.
+    - Test the pipeline by modifying any line in a file within your repository.
+
+19. **Debugging Tips**  
+    - If errors persist, remove and restart Docker containers using:
+      ```bash
+      docker rm -f <container_id>
+      
+
