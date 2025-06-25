@@ -122,6 +122,6 @@ Your continuous integration pipeline is now ready to build and deploy your Pytho
 19. **Debugging Tips**  
     - If errors persist, remove and restart Docker containers using:
       ```bash
-      docker rm -f <container_id>
+      sudo docker rm -f <container_id>
       
 
