@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello iamnhan 👋</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #24292e 0%, #40444b 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .bio {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        
+        .current-activities {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .activity {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4ecdc4;
+            transition: transform 0.2s ease;
+        }
+        
+        .activity:hover {
+            transform: translateX(5px);
+        }
+        
+        .tech-category {
+            margin-bottom: 25px;
+        }
+        
+        .tech-category h4 {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #555;
+            font-weight: 600;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tag {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .tag:hover::before {
+            left: 100%;
+        }
+        
+        .tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Tech-specific colors */
+        .react { background: #61dafb; color: #000; }
+        .vue { background: #4fc08d; color: white; }
+        .python { background: #3776ab; color: white; }
+        .django { background: #092e20; color: white; }
+        .nodejs { background: #339933; color: white; }
+        .express { background: #000000; color: white; }
+        .postgresql { background: #336791; color: white; }
+        .mysql { background: #4479a1; color: white; }
+        .sql-server { background: #cc2927; color: white; }
+        .docker { background: #2496ed; color: white; }
+        .aws { background: #ff9900; color: black; }
+        .git { background: #f05032; color: white; }
+        .railway { background: #0b0d0e; color: white; }
+        
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0077b5;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,119,181,0.3);
+        }
+        
+        .linkedin-btn:hover {
+            background: #005885;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,119,181,0.4);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .title {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .tech-tags {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="avatar">👨‍💻</div>
+                <h1 class="title">Hello iamnhan 👋</h1>
+                <p class="subtitle">
+                    <span>🚀 Backend Developer</span>
+                    <span>|</span>
+                    <span>🧠 Tech Enthusiast</span>
+                </p>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="bio">
+                "I'm currently learning to build reliable and efficient backend systems. I enjoy exploring different technologies and improving my backend development skills step by step"
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title">📌 About Me</h3>
+                <div class="current-activities">
+                    <div class="activity">
+                        <strong>🎯 Currently exploring:</strong> React & Django
+                    </div>
+                    <div class="activity">
+                        <strong>🔨 Building fullstack apps using:</strong> React, Vue, Python, Node.js
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title">🛠️ Tech Stack</h3>
+                
+                <div class="tech-category">
+                    <h4>Frontend</h4>
+                    <div class="tech-tags">
+                        <span class="tag react">React</span>
+                        <span class="tag vue">Vue.js</span>
+                    </div>
+                </div>
+                
+                <div class="tech-category">
+                    <h4>Backend</h4>
+                    <div class="tech-tags">
+                        <span class="tag python">Python</span>
+                        <span class="tag django">Django</span>
+                        <span class="tag nodejs">Node.js</span>
+                        <span class="tag express">Express.js</span>
+                    </div>
+                </div>
+                
+                <div class="tech-category">
+                    <h4>Databases</h4>
+                    <div class="tech-tags">
+                        <span class="tag postgresql">PostgreSQL</span>
+                        <span class="tag mysql">MySQL</span>
+                        <span class="tag sql-server">SQL Server</span>
+                    </div>
+                </div>
+                
+                <div class="tech-category">
+                    <h4>DevOps & Tools</h4>
+                    <div class="tech-tags">
+                        <span class="tag docker">Docker</span>
+                        <span class="tag aws">AWS</span>
+                        <span class="tag git">Git</span>
+                        <span class="tag railway">Railway</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title">🤝 Connect with me</h3>
+                <a href="#" class="linkedin-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>💡 "Learning never exhausts the mind" - Leonardo da Vinci</p>
+            <p style="margin-top: 10px;">Built with ❤️ and lots of ☕</p>
+        </div>
+    </div>
+    
+    <script>
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate sections on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationDelay = '0.2s';
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Add hover effects to tags
+            document.querySelectorAll('.tag').forEach(tag => {
+                tag.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.05)';
+                });
+                
+                tag.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Avatar rotation on click
+            document.querySelector('.avatar').addEventListener('click', function() {
+                this.style.transform = 'rotate(360deg)';
+                this.style.transition = 'transform 0.8s ease';
+                setTimeout(() => {
+                    this.style.transform = 'rotate(0deg)';
+                }, 800);
+            });
+        });
+    </script>
+</body>
+</html>
